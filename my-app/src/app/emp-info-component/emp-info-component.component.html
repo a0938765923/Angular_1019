@@ -1,0 +1,125 @@
+<div style="font-size: 35px;">新增陣列，存放以下員工資料</div>
+<table>
+  <tr *ngFor="let user of housingLocationList;">
+      <td><h1>{{user.EmpID}}</h1></td>
+      <td><h1>{{user.EmpName}}</h1></td>
+      <td><h1>{{user.BirthDate}}</h1></td>
+      <td><h1>{{user.Address}}</h1></td>
+      <td><h1>{{user.Enabled}}</h1></td>
+      <td><h1>{{user.HRDeptID}}</h1></td>
+  </tr>
+</table>
+
+<div style="font-size: 35px;">表格篩選條仵：</div>
+<div style="font-size: 35px;">(1)只年現在職中的員工</div>
+<div style="font-size: 35px;">(2)生日的格式為 wyx/MM/dds</div>
+<div style="font-size: 35px;">(3)若HRDeptD=AAAO000 的員工，資料行底色二#DEEAF6，其他為#E2EFD9</div> 
+<table style= "margin-top: 3%;">
+  <tr *ngFor="let user of housingLocationList;">
+    <ng-container *ngIf="user.Enabled === 'N' ;else second">
+    </ng-container>
+    <ng-template #second>
+        <ng-container *ngIf="user.HRDeptID === 'AAA0000';else third">
+          <td style="background: #DEEAF6;"><h1>{{user.EmpID}}</h1></td>
+          <td style="background: #DEEAF6;"><h1>{{user.EmpName}}</h1></td>
+          <td style="background: #DEEAF6;"><h1>{{user.BirthDate}}</h1></td>
+          <td style="background: #DEEAF6;"><h1>{{user.Address}}</h1></td>
+          <td style="background: #DEEAF6;"><h1>{{user.HRDeptID}}</h1></td>
+        </ng-container>
+    </ng-template>
+    <ng-template #third>
+      <td  style="background: #E2EFD9;"><h1>{{user.EmpID}}</h1></td>
+      <td  style="background: #E2EFD9;"><h1>{{user.EmpName}}</h1></td>
+      <td  style="background: #E2EFD9;"><h1>{{user.BirthDate}}</h1></td>
+      <td  style="background: #E2EFD9;"><h1>{{user.Address}}</h1></td>
+      <td  style="background: #E2EFD9;"><h1>{{user.HRDeptID}}</h1></td>
+    </ng-template>
+  </tr>
+</table>
+
+<style>
+  table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+  }
+  table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+</style>
+
+<div style="font-size: 35px;">下拉選單，選擇縣市，過濾表格資料</div>
+
+<select style= "margin-bottom: 10%;margin-top: 3%;" id="select-menu"  [(ngModel)]="selectedOption" class="bx--text-input" required name="actionSelection" >
+        <option  *ngFor="let action of actions"  [value]="action.id">{{action.name}}</option>
+</select>
+<div>
+    <div *ngIf="selectedOption==1">
+      <table style= "margin-bottom: 10%;">
+            <td><h1>{{housingLocationList[0].EmpID}}</h1></td>
+            <td><h1>{{housingLocationList[0].EmpName}}</h1></td>
+            <td><h1>{{housingLocationList[0].BirthDate}}</h1></td>
+            <td><h1>{{housingLocationList[0].Address}}</h1></td>
+            <td><h1>{{housingLocationList[0].Enabled}}</h1></td>
+            <td><h1>{{housingLocationList[0].HRDeptID}}</h1></td>
+      </table>
+    </div>
+    <div *ngIf="selectedOption==2">
+      <table style= "margin-bottom: 10%;">
+        <td><h1>{{housingLocationList[1].EmpID}}</h1></td>
+        <td><h1>{{housingLocationList[1].EmpName}}</h1></td>
+        <td><h1>{{housingLocationList[1].BirthDate}}</h1></td>
+        <td><h1>{{housingLocationList[1].Address}}</h1></td>
+        <td><h1>{{housingLocationList[1].Enabled}}</h1></td>
+        <td><h1>{{housingLocationList[1].HRDeptID}}</h1></td>
+      </table>
+    </div>
+    <div *ngIf="selectedOption==3">
+      <table style= "margin-bottom: 10%;">
+        <td><h1>{{housingLocationList[3].EmpID}}</h1></td>
+        <td><h1>{{housingLocationList[3].EmpName}}</h1></td>
+        <td><h1>{{housingLocationList[3].BirthDate}}</h1></td>
+        <td><h1>{{housingLocationList[3].Address}}</h1></td>
+        <td><h1>{{housingLocationList[3].Enabled}}</h1></td>
+        <td><h1>{{housingLocationList[3].HRDeptID}}</h1></td>
+      </table>
+    </div>
+    <div *ngIf="selectedOption==4">
+      <table style= "margin-bottom: 10%;">
+        <tr>
+          <td><h1>{{housingLocationList[5].EmpID}}</h1></td>
+          <td><h1>{{housingLocationList[5].EmpName}}</h1></td>
+          <td><h1>{{housingLocationList[5].BirthDate}}</h1></td>
+          <td><h1>{{housingLocationList[5].Address}}</h1></td>
+          <td><h1>{{housingLocationList[5].Enabled}}</h1></td>
+          <td><h1>{{housingLocationList[5].HRDeptID}}</h1></td>
+        </tr>
+        <tr>
+          <td><h1>{{housingLocationList[6].EmpID}}</h1></td>
+          <td><h1>{{housingLocationList[6].EmpName}}</h1></td>
+          <td><h1>{{housingLocationList[6].BirthDate}}</h1></td>
+          <td><h1>{{housingLocationList[6].Address}}</h1></td>
+          <td><h1>{{housingLocationList[6].Enabled}}</h1></td>
+          <td><h1>{{housingLocationList[6].HRDeptID}}</h1></td>
+        </tr>
+      </table>
+    </div>
+  
+</div>
+
+<style>
+  table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+  }
+  table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+</style>
